@@ -116,10 +116,10 @@ function MainP() {
           <Route path="/petshop/antrian-layanan">
             <AntrianL/>
           </Route>
-          <Route path="/detail-produk">
+          <Route path="/petshop/detail-produk">
             <Produkdetail/>
           </Route>
-          <Route path="detail-layanan">
+          <Route path="/petshop/detail-layanan">
             <Layanandetail/>
           </Route>
         </Switch>
