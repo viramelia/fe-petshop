@@ -3,8 +3,6 @@ import {Nav, Navbar, Form, FormControl, Button, NavDropdown, Image} from 'react-
 import {BrowserRouter as Router, Link, Switch, Route} from 'react-router-dom'
 
 import BerandaC from '../BerandaC'
-import Layanan from './Layanan'
-import Produk from './Produk'
 import ProfilP from './ProfilP'
 import TransaksiP from './TransaksiP'
 import TransaksioffP from './TransaksioffP'
@@ -18,10 +16,6 @@ import Layanandetail from '../../components/Layanandetail'
 
 function MainP() {
   const [sidebar, setSidebar] = useState(false);
-  
-  const toggleSidebar = () =>{
-    setSidebar(!sidebar)
-  }
 
   const openSidebar = () =>{
     setSidebar(true)
@@ -39,22 +33,22 @@ function MainP() {
       </div>
       <div id="main" className={sidebar ? "push-main-page":"main-page"}>
         <Navbar bg="light" variant="light">
-            {
-              sidebar ?
-              <span onClick={closeSidebar} className="close-sidebar">
-                <div className="wrap-close">
-                  <div className="close-strip">
-                    <div className="second-close-strip">
-                    </div>
+          {
+            sidebar ?
+            <span onClick={closeSidebar} className="close-sidebar">
+              <div className="wrap-close">
+                <div className="close-strip">
+                  <div className="second-close-strip">
                   </div>
                 </div>
-              </span>:
-              <div className="sidebar-open" onClick={openSidebar}>
-                <div className="line"></div>
-                <div className="line"></div>
-                <div className="line"></div>
               </div>
-            }
+            </span>:
+            <div className="sidebar-open" onClick={openSidebar}>
+              <div className="line"></div>
+              <div className="line"></div>
+              <div className="line"></div>
+            </div>
+          }
           <Navbar.Brand>
             <img className="navbar-logo" src={require('../../assets/LOGO PNG.png').default} alt="logo"/> 
           </Navbar.Brand>
@@ -129,3 +123,5 @@ function MainP() {
 }
 
 export default MainP
+
+

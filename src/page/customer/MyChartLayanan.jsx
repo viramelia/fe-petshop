@@ -1,48 +1,48 @@
 import React, {useState} from 'react'
-import { Container, Form, Button, Table, Modal } from 'react-bootstrap'
+import { Container, Button, Table, Modal } from 'react-bootstrap'
 
 function MyChartLayanan() {
   const [detail, setDetail]= useState(false)
 
   return (
     <Container align="center">
-       <Table striped bordered hover>
-<thead>
-  <tr>
-    <th>Nama Layanan</th>
-    <th>Petshop</th>
-    <th>Waktu antrian</th>
-    <th>Aksi</th>
-  </tr>
-</thead>
-<tbody>
-  <tr>
-    <td>Grooming</td>
-    <td>petshop</td>
-    <td>10.00-11.00</td>
-    <td>
-      <Button onClick={()=>setDetail(true)}>Detail</Button>
-    </td>
-  </tr>
-  <tr>
-    <td>Vaksin</td>
-    <td>petshop</td>
-    <td>13.00-14.00</td>
-          <td>
-      <Button onClick={()=>setDetail(true)}>Detail</Button>
-    </td>
-  </tr>
-  <tr>
-    <td>konsul</td>
-    <td>petshop</td>
-    <td>13.00-14.00</td>
-          <td>
-        <Button onClick={()=>setDetail(true)}>Detail</Button>
-    </td>
-  </tr>
-</tbody>
-</Table>
-<Modal show={detail} onHide={()=>setDetail(false)}>
+      <Table striped bordered hover>
+        <thead>
+          <tr>
+            <th>Nama Layanan</th>
+            <th>Petshop</th>
+            <th>Waktu antrian</th>
+            <th>Aksi</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Grooming</td>
+            <td>petshop</td>
+            <td>10.00-11.00</td>
+            <td>
+              <Button onClick={()=>setDetail(true)}>Detail</Button>
+            </td>
+          </tr>
+          <tr>
+            <td>Vaksin</td>
+            <td>petshop</td>
+            <td>13.00-14.00</td>
+                  <td>
+              <Button onClick={()=>setDetail(true)}>Detail</Button>
+            </td>
+          </tr>
+          <tr>
+            <td>konsul</td>
+            <td>petshop</td>
+            <td>13.00-14.00</td>
+                  <td>
+                <Button onClick={()=>setDetail(true)}>Detail</Button>
+            </td>
+          </tr>
+        </tbody>
+      </Table>
+      <Modal show={detail} onHide={()=>setDetail(false)}>
         <Modal.Header>
           <Modal.Title>Detail booking layanan</Modal.Title>
         </Modal.Header>

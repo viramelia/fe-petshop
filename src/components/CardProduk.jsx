@@ -1,9 +1,8 @@
-import React, {useState} from 'react'
-import {Card, Button, Modal, Form, Row, Col} from 'react-bootstrap'
+import React from 'react'
+import {Card, Button} from 'react-bootstrap'
 import {useHistory} from 'react-router-dom'
 
 function CardProduk() {
-  const [show, setShow] = useState(false)
   const history = useHistory()
 
   const toDetail = ()=>{

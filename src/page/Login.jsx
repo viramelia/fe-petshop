@@ -1,6 +1,6 @@
 import React, {useState} from'react'
 import {Container, Card, Form, Button, Nav} from'react-bootstrap'
-import {useHistory, Link} from 'react-router-dom'
+import {useHistory} from 'react-router-dom'
 
 function Login(){
   const [email, setEmail] = useState()

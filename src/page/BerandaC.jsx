@@ -5,8 +5,6 @@ import {Jumbotron, Container, Card,
 
 import CardProduk from '../components/CardProduk'
 import CardLayanan from '../components/CardLayanan';
-import Layanandetail from '../components/Layanandetail';
-import Produkdetail from '../components/Produkdetail';
 
 function BerandaC() {
   const [produk, setProduk] = useState([
@@ -37,13 +35,12 @@ function BerandaC() {
               <h2>Halo Sahabat Petshop</h2>
               <p>Temukan kebutuhan hewan peliharaanmu disini dari beberapa Petshop Kota Makassar</p>
             </Col>
-            <Col><div className="right-side">
-            {/* <Image className="latar-beranda" src="bg.jpg" alt="bg"/>  */}
-          </div></Col>
+            <Col>
+              <div className="right-side"></div>
+            </Col>
           </Row>
         </Container>
       </Jumbotron> 
- 
       <Container>
         <h2>Produk</h2> 
         <Row>
