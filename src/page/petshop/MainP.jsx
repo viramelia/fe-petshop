@@ -4,6 +4,7 @@ import {BrowserRouter as Router, Link, Switch, Route} from 'react-router-dom'
 
 import BerandaC from '../BerandaC'
 import ProfilP from './ProfilP'
+import EditProfil from './EditProfil'
 import TransaksiP from './TransaksiP'
 import TransaksioffP from './TransaksioffP'
 import TransaksioffL from './TransaksioffL'
@@ -13,6 +14,8 @@ import AntrianL from './AntrianL'
 import MyChartLayanan from '../customer/MyChartLayanan'
 import Produkdetail from '../../components/Produkdetail'
 import Layanandetail from '../../components/Layanandetail'
+import Produk from './Produk'
+import Layanan from './Layanan'
 
 function MainP() {
   const [sidebar, setSidebar] = useState(false);
@@ -115,6 +118,15 @@ function MainP() {
           </Route>
           <Route path="/petshop/detail-layanan">
             <Layanandetail/>
+          </Route>
+          <Route path="/petshop/upload-produk">
+            <Produk/>
+          </Route>
+          <Route path="/petshop/upload-layanan">
+            <Layanan/>
+          </Route>
+          <Route path="/petshop/edit-profil">
+            <EditProfil/>
           </Route>
         </Switch>
       </div>

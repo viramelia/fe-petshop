@@ -1,7 +1,21 @@
 import React from 'react'
 import {Container, Row, Col, Image, Button} from 'react-bootstrap'
+import {useHistory} from 'react-router-dom'
 
 function ProfilP() {
+  const history = useHistory()
+  
+  const editProfil = () =>{
+    history.push('/petshop/edit-profil')
+  }
+
+  const uploadLayanan =()=>{
+    history.push('/petshop/upload-layanan')
+  }
+
+  const uploadProduk =()=>{
+    history.push('/petshop/upload-produk')
+  }
   return (
     <Container>
       <Row>
@@ -11,22 +25,21 @@ function ProfilP() {
           <p>Alamat : Jalan Bajo</p>
           <p>No Hp  : 0821548xxxxx</p>
           <p>Perempuan</p>           
-          <Button variant="primary">Edit profil</Button>
+          <Button onClick={editProfil} variant="primary">Edit profil</Button>
         </Col>
         <Col md={10}>
           <h2>Produk</h2>
           <Row>
             <Col>
-              
             </Col>
-            <Button variant="primary">Upload Produk</Button>
+            <Button onClick={uploadProduk} variant="primary">Upload Produk</Button>
           </Row>
           <h2>Layanan</h2>
           <Row>
             <Col>
               
             </Col>
-            <Button variant="primary">Upload Layanan</Button>
+            <Button onClick={uploadLayanan}variant="primary">Upload Layanan</Button>
           </Row>
         </Col>
       </Row>
