@@ -17,23 +17,29 @@ function TransaksioffP(){
       nama: 'cat choize',
       foto: 'merek-whiskas.png',
     },
+    {
+      nama: 'cat choize',
+      foto: 'merek-whiskas.png',
+    },
   ])
 
   return(
-    <Container>
-      <h2 className="text-center">Transaksi Offline Produk</h2>
+    <Container align="center">
+      <p style={{fontSize: '48px', color: '#46397e', textShadow:'rgba(0, 0, 0, 0.25)'}}>Transaksi Offline Produk</p> 
+      <hr style={{border: '2px solid #001E6C', width: '50px'}}/>
+      
       <form>
         <Row>
           {
             produk.map((data, index)=>(
-              <Col key={index}  md={4}>
+              <Col key={index}  md={3}>
               <Card style={{ width: '15rem' }}>
-                <Card.Img as={Image} variant="top" src={foto} />
+                <Card.Img style={{padding: '20px'}} as={Image} variant="top" src={foto} />
                 <Card.Body>
-                  <Card.Title>{data.nama}</Card.Title>
-                  <Card.Text>
-                    Rp. 10.000
-                  </Card.Text>
+                  {/* <Card.Title>{data.nama}</Card.Title> */}
+                  <p align="left">{data.nama}
+                    <span style={{float: 'right', color: '#7345AB', fontWeight: 'bold'}}>Rp. 10.000</span>
+                  </p>
                     <Form.Control as="select" aria-label="Default select example">
                       <option value="1">1</option>
                       <option value="2">2</option>
@@ -45,7 +51,7 @@ function TransaksioffP(){
             ))
           }
         </Row>
-        <center><Button variant="primary">Checkout</Button></center>
+        <center><Button className="mt-3" style={{backgroundColor: '#7345AB', border: 'none', }} variant="primary">Checkout</Button></center>
       </form>
     </Container>
   )

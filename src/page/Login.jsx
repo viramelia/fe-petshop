@@ -2,6 +2,7 @@ import React, {useState} from'react'
 import {Container, Card, Form, Button, Nav} from'react-bootstrap'
 import {useHistory} from 'react-router-dom'
 
+
 function Login(){
   const [email, setEmail] = useState()
   const [password, setPassword] = useState()
@@ -36,10 +37,10 @@ function Login(){
               <Form.Label>Password</Form.Label>
               <Form.Control type="password" placeholder="Password" onChange={e=>setPassword(e.target.value)}/>
             </Form.Group>
-            <center><Button style={{backgroundColor:'#082B59'}} variant="primary" type="submit">
+            <center><Button style={{backgroundColor:'#7435AB'}} variant="primary" type="submit">
               Submit
             </Button>
-            <p>Belum punya akun?</p>
+            <p style={{color:'#787A91', fontSize:13}}>Belum punya akun?</p>
             </center>
               
           </Form>

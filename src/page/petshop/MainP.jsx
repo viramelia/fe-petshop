@@ -6,6 +6,7 @@ import BerandaC from '../BerandaC'
 import ProfilP from './ProfilP'
 import EditProfil from './EditProfil'
 import TransaksiP from './TransaksiP'
+import TransaksiL from './TransaksikL'
 import TransaksioffP from './TransaksioffP'
 import TransaksioffL from './TransaksioffL'
 import About from '../About'
@@ -35,7 +36,7 @@ function MainP() {
         <Link to="/petshop/offline-layanan">Layanan</Link>
       </div>
       <div id="main" className={sidebar ? "push-main-page":"main-page"}>
-        <Navbar bg="light" variant="light">
+        <Navbar className="navbar" expand="lg"  >
           {
             sidebar ?
             <span onClick={closeSidebar} className="close-sidebar">
@@ -63,9 +64,10 @@ function MainP() {
               <NavDropdown.Item href="/petshop/daftarpesanan">Produk</NavDropdown.Item>
               <NavDropdown.Item href="/petshop/antrian-layanan">Layanan</NavDropdown.Item>
             </NavDropdown>
-            <Nav.Link as={Link} to="/petshop/transaksi">
-              Transaksi
-            </Nav.Link>
+            <NavDropdown title="Riwayat Transaksi" id="basic-nav-dropdown">
+              <NavDropdown.Item href="/petshop/transaksi">Produk</NavDropdown.Item>
+              <NavDropdown.Item href="/petshop/transaksi-layanan">Layanan</NavDropdown.Item>
+            </NavDropdown>
             <Nav.Link as={Link} to="/about">
               About
             </Nav.Link>
@@ -77,7 +79,7 @@ function MainP() {
                 className="mr-2"
                 aria-label="Search"
               />
-              <Button variant="outline-success">Search</Button>
+              <Button style={{backgroundColor:'#7435AB'}} variant="primary" >Search</Button>
             </Form>
           <Image className="img-profil" src={require('../../assets/petshop.png').default} roundedCircle />
           <NavDropdown title="Viramelia" id="basic-nav-dropdown">
@@ -127,6 +129,9 @@ function MainP() {
           </Route>
           <Route path="/petshop/edit-profil">
             <EditProfil/>
+          </Route>
+          <Route path="/petshop/transaksi-layanan">
+            <TransaksiL/>
           </Route>
         </Switch>
       </div>

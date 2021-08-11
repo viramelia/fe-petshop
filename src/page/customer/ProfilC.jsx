@@ -1,22 +1,23 @@
 import React from 'react'
 import { Container, Row, Col, Image, Card, Button} from 'react-bootstrap'
+import {Route, useHistory} from 'react-router-dom'
+
+import UpdateProfil from './UpdateProfil'
 
 function ProfilC(){
+  const history = useHistory()
   return(
-    <Container className="mt-3" align="center">
-      <Card style={{marginTop: '5%'}}>
-        <Card.Body>
-          <Image className="img-profil-update"  src={require('../../assets/profil.JPG').default} roundedCircle></Image>
-          <p className="mt-3 text-center">
-          Viramelia Basri
-          </p>
-          <p>Alamat : Jalan Bajo</p>
-          <p>No Hp  : 0821548xxxxx</p>
-          <p>Perempuan</p>
-          <Button variant="primary">Edit profil</Button>
-        </Card.Body>
-      </Card>
-    </Container>
+  <Route>
+    <div style={{backgroundColor: '#7435AB', padding: '100px'}}> </div>
+      <div align="center">
+        <Image className="img-profil-update" src={require('../../assets/petshop.png').default} roundedCircle></Image>
+        <p style={{fontSize: '48px', color: '#46397e'}}>Viramelia Basri</p> 
+        <hr style={{border: '2px solid #001E6C', width: '50px'}}/>
+        <p style={{color: '#848484', fontSize: 18+'px'}}>Jl. Sunu | 082190494097 | 27 Desember 1999 | Perempuan</p>
+        <Button className="mt-3" style={{backgroundColor: '#7435AB', border: 'none'}} onClick={()=> history.push('/customer/update-profil')} >Update</Button>
+      </div>
+ </Route>
+  
   )
 }
 

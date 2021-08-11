@@ -1,100 +1,91 @@
-import React, { useState } from 'react'
-import {Container, Form, Table, Button, Modal} from 'react-bootstrap'
+import React from 'react'
+import {Container, Accordion, Card, Badge, Form, Row, Col} from 'react-bootstrap'
 
 function AntrianL() {
-  const [detail, setDetail] = useState(false) 
-
   return (
-      <Container>
-      <p>Filter berdasarkan layanan</p>
-      <Form.Group controlId="exampleForm.SelectCustom">
-        <Form.Control as="select" custom >
-          <option>Grooming</option>
-          <option>Pemberian Vaksin</option>
-          <option>Pemeriksaan mata</option>
-          <option>Cacingan</option>
-        </Form.Control>
-      </Form.Group>
-      <Table striped bordered hover>
-        <thead>
-          <tr>
-            <th>Nama</th>
-            <th>Tanggal booking</th>
-            <th>Waktu antrian</th>
-            <th>Aksi</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>mimi</td>
-            <td>27-12-2021</td>
-            <td>10.00-11.00</td>
-            <td>
-              <Button onClick={()=>setDetail(true)}>Detail</Button>
-            </td>
-          </tr>
-        </tbody>
-      </Table>
-      <Modal show={detail} onHide={()=>setDetail(false)}>
-        <Modal.Header>
-          <Modal.Title>Detail booking layanan</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <table>
-            <tr>
-              <td>Nama customer </td>
-              <td>: shiro</td>
-            </tr>
-            <tr>
-              <td>Tanggal pesan </td>
-              <td>: 3 - 9 -2021</td>
-            </tr>
-            <tr>
-              <td>Tanggal booking </td>
-              <td>: 27 - 12 - 2021</td>
-            </tr>
-            <tr>
-              <td>Jenis layanan </td>
-              <td>: Kesehatan</td>
-            </tr>
-            <tr>
-              <td>Nama layanan </td>
-              <td>: Vaksin</td>
-            </tr>
-            <tr>
-              <td>Harga layanan / Kg </td>
-              <td>: Rp.10.000</td>
-            </tr>
-            <tr>
-              <td>Jenis hewan </td>
-              <td>: Kucing</td>
-            </tr>
-            <tr>
-              <td>Berat </td>
-              <td>
-                <Form.Group controlId="exampleForm.SelectCustom">
-                  <Form.Control as="select" custom >
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                    <option>6</option>
-                  </Form.Control>
+    <Container className="mt-3">
+      <h1 className="text-center color-primary">Layanan terbooking</h1>
+      <hr className="hr-bottom"/>
+      <Accordion defaultActiveKey="0">
+        <Card>
+          <Accordion.Toggle as={Card.Header} eventKey="0">
+            Viramelia <Badge variant="primary">Online</Badge>
+            <p style={{color: '#848484', marginBottom: 0+'px'}}>27-12-2021</p>
+          </Accordion.Toggle>
+          <Accordion.Collapse eventKey="0">
+            <Card.Body>
+              <table>
+                <tr>
+                  <td>Nama customer</td>
+                  <td> :</td>
+                </tr>
+                <tr>
+                  <td>Alamat</td>
+                  <td> :</td>
+                </tr>
+                <tr>
+                  <td>Tanggal pesan</td>
+                  <td> :</td>
+                </tr>
+                <tr>
+                  <td>tanggal booking</td>
+                  <td> :</td>
+                </tr>
+                <tr>
+                  <td>Jam mulai</td>
+                  <td> :</td>
+                </tr>
+                <tr>
+                  <td>Jam selesai</td>
+                  <td> :</td>
+                </tr>
+                <tr>
+                  <td>Biaya</td>
+                  <td> :</td>
+                </tr>
+              </table>
+              <form action="#">
+                <Form.Group controlId="formBasicEmail">
+                  <Form.Label>Jenis hewan</Form.Label>
+                  <Form.Control type="text" placeholder="Kucing" />
                 </Form.Group>
-              </td>
-            </tr>
-            <tr>
-              <td>Total pembayaran</td>
-              <td>: Rp. 20.000</td>
-            </tr>
-          </table>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={()=>setDetail(false)}>Close</Button>
-          <Button variant="primary" onClick={()=>setDetail(false)}>Checkout</Button>
-        </Modal.Footer>
-      </Modal>
+
+                <Form.Group controlId="formBasicPassword">
+                  <Form.Label>Berat / Kg</Form.Label>
+                  <Form.Control type="number" placeholder="1" />
+                </Form.Group>
+                <Row className="justify-content-center">
+                  <Col md={8} className="mt-3">
+                    <hr className="mt-3" style={{border: '3px solid #7345AB'}}/>
+                    <p align="left">Total pembayaran 
+                      <span style={{color: '#7345AB',fontWeight: 'bold', float: 'right'}}>Rp. 20.000</span>
+                    </p>
+                    <p align="left">Update status pembayaran
+                      <form action="#" style={{float: 'right'}}>
+                        <Form.Group controlId="exampleForm.ControlSelect1">
+                          {/* <Form.Label>Example select</Form.Label> */}
+                          <Form.Control as="select">
+                            <option>Terboking</option>
+                            <option>Selesai</option>
+                          </Form.Control>
+                        </Form.Group>
+                      </form>
+                    </p>
+                  </Col>
+                </Row>
+              </form>
+            </Card.Body>
+          </Accordion.Collapse>
+        </Card>
+        <Card>
+          <Accordion.Toggle as={Card.Header} eventKey="1">
+            Click me!
+          </Accordion.Toggle>
+          <Accordion.Collapse eventKey="1">
+            <Card.Body>Hello! I'm another body</Card.Body>
+          </Accordion.Collapse>
+        </Card>
+      </Accordion>
     </Container>
   )
 }

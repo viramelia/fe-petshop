@@ -9,17 +9,19 @@ import About from '../About'
 import BerandaC from '../BerandaC'
 import MyChart from './MyChart'
 import ProfilC from './ProfilC'
-import TransaksiC from './TransaksiC'
+import TransaksiProduk from './TransaksiProduk'
+import TransaksiLayanan from './TransaksiLayanan'
 import Payment from './Payment'
 import MyChartLayanan from './MyChartLayanan'
 import Layanandetail from '../../components/Layanandetail'
-import Produkdetail from '../../components/Produkdetail'
+import Produkdetail from '../ProdukDetail'
+import UpdateProfil from './UpdateProfil'
 
 function MainC() {
   return (
     <Router>
       <div id="main" className="main-page">
-        <Navbar bg="light" variant="light">
+        <Navbar className="bg-primary-c" variant="light">
           <Navbar.Brand>
             <img className="navbar-logo" src={require('../../assets/LOGO PNG.png').default} alt="logo"/>
           </Navbar.Brand>
@@ -31,9 +33,13 @@ function MainC() {
               <NavDropdown.Item href="/customer/my-chart">Produk</NavDropdown.Item>
               <NavDropdown.Item as={Link} to="/customer/pesanan-layanan">Layanan</NavDropdown.Item>
             </NavDropdown>
-            <Nav.Link as={Link} to="/customer/transaksi">
+            <NavDropdown title="Riwayat transaksi" id="basic-nav-dropdown">
+              <NavDropdown.Item as={Link} to="/customer/riwayat-transaksi-produk">Produk</NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="/customer/riwayat-transaksi-layanan">Layanan</NavDropdown.Item>
+            </NavDropdown>
+            {/* <Nav.Link as={Link} to="/customer/transaksi">
               Transaksi
-            </Nav.Link>
+            </Nav.Link> */}
             <Nav.Link as={Link} to="/customer/about">
               About
             </Nav.Link>
@@ -69,8 +75,11 @@ function MainC() {
           <Route path="/customer/payment">
             <Payment/>
           </Route>
-          <Route path="/customer/transaksi">
-            <TransaksiC/>
+          <Route path="/customer/riwayat-transaksi-layanan">
+            <TransaksiLayanan/>
+          </Route>
+          <Route path="/customer/riwayat-transaksi-produk"> 
+            <TransaksiProduk/>
           </Route>
           <Route path="/customer/about">
             <About/>
@@ -80,6 +89,9 @@ function MainC() {
           </Route>
           <Route path="/customer/detail-layanan">
             <Layanandetail/>
+          </Route>
+          <Route path="/customer/update-profil">
+            <UpdateProfil/>
           </Route>
         </Switch>
       </div>

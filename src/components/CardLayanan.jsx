@@ -14,11 +14,11 @@ function CardLayanan() {
 
   return (
     <div>
-      <Card style={{ width: '15rem' }}>
-        <Card.Img variant="top" style={{height: '238px'}} src={require('../assets/merek-whiskas.png').default} />
+      <Card style={{ width: '214px', borderBlockColor: 'none'}}>
+        <Card.Img variant="top" style={{height: '215px', padding:'10px'}} src={require('../assets/merek-whiskas.png').default} />
         <Card.Body>
           <Card.Title>Grooming</Card.Title>
-          <Button className="width-full" variant="info" onClick={toDetail}>Beli</Button>
+          <Button className="width-full" style={{backgroundColor: '#7435AB', border: 'none'}} onClick={toDetail}>Booking</Button>
         </Card.Body>
       </Card>
       <Modal show={layanan} onHide={()=> setLayanan(false)}>

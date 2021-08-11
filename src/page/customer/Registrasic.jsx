@@ -2,6 +2,7 @@ import React from 'react'
 import {Card, Form, Row, Col, Container, Button} from 'react-bootstrap' 
 import {useHistory} from 'react-router-dom'
 
+
 function Registrasic(){
   const history = useHistory()
   return (
@@ -62,7 +63,7 @@ function Registrasic(){
                 </Col>
               </Row>
             </Form>
-                <center><Button variant="primary" type="submit" onClick={()=> history.push('/')}>
+                <center><Button variant="primary" type="submit" onClick={()=> history.push('/customer')}>
               Registrasi
             </Button></center>
           </Card.Body>

@@ -8,6 +8,7 @@ function Produkdetail(){
       <Row>
         <Col md={4}>
           <img className="img-produk" src={require('../assets/merek-whiskas.png').default} alt="gambar"/>
+          <img src={require('../assets/shop.png').default} alt="petshop"/>
         </Col>
         <Col md={8}> 
           <div className="d-flex">
@@ -15,7 +16,7 @@ function Produkdetail(){
             <p className="justify-content-start">Rp. 10.000 /Pcs</p>
           </div>
           <p>produk ini adalah bala bala bala haghvdjjabdbhjdbj</p>
-          <Form>
+          {/* <Form>
             <Form.Group controlId="exampleForm.SelectCustom">
               <Form.Label>Pcs</Form.Label>
               <Form.Control as="select" custom>
@@ -26,9 +27,12 @@ function Produkdetail(){
                 <option>5</option>
               </Form.Control>
             </Form.Group>
-          </Form>
+          </Form> */}
         </Col>
       </Row>
+      <div style={{backgroundColor: 'red', float: 'right'}}>
+hbhjbjj
+      </div>
     </Container>
   )
 }

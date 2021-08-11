@@ -12,15 +12,13 @@ import MainP from './page/petshop/MainP';
 import MainC from './page/customer/MainC';
 import Registrasi from'./page/petshop/Registrasi'
 import Registrasic from'./page/customer/Registrasic'
+import About from './page/About';
 
 
 function App() {
   return (
     <Router>
       <Switch>
-        <Route exact path="/">
-          <Main/>
-        </Route>
         <Route path="/login">
           <Login/>
         </Route>
@@ -35,6 +33,9 @@ function App() {
         </Route>
         <Route path="/customer">
           <MainC/>
+        </Route>
+        <Route path="/">
+          <Main/>
         </Route>
       </Switch>
   </Router>
