@@ -12,7 +12,7 @@ import MainP from './page/petshop/MainP';
 import MainC from './page/customer/MainC';
 import Registrasi from'./page/petshop/Registrasi'
 import Registrasic from'./page/customer/Registrasic'
-import About from './page/About';
+import MainAdmin from './page/admin/MainAdmin';
 
 
 function App() {
@@ -33,6 +33,9 @@ function App() {
         </Route>
         <Route path="/customer">
           <MainC/>
+        </Route>
+        <Route path="/admin">
+          <MainAdmin/>
         </Route>
         <Route path="/">
           <Main/>

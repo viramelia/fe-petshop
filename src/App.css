@@ -207,11 +207,17 @@
 }
 
 .color-primary{
-  color: #7453AB;
+  color: #7435AB;
 }
 
 .hr-bottom{
-  border: 2px solid #7453AB;
+  border: 2px solid #7435AB;
   width: 48px;
+}
+
+/* DETAIL PETSHOP */
+.detail-petshop:hover{
+  color: #7435AB;
+  cursor: pointer;
 }
 /* gcgg */

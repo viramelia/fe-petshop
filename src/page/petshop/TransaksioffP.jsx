@@ -27,7 +27,21 @@ function TransaksioffP(){
     <Container align="center">
       <p style={{fontSize: '48px', color: '#46397e', textShadow:'rgba(0, 0, 0, 0.25)'}}>Transaksi Offline Produk</p> 
       <hr style={{border: '2px solid #001E6C', width: '50px'}}/>
-      
+      <Row className="justify-content-center">
+        <Col md={6}>
+          <Card >
+            <Card.Body>
+              <Form className="d-flex justify-content-md-center">
+                <Form.Control  type="text" placeholder="nama produk/petshop" />
+                <Button className="ml-3"
+                  style={{backgroundColor: '#7453AB', border: 'none', width: 80+'px', height: '38px'}}>
+                    Cari</Button>
+              </Form>
+            </Card.Body>
+          </Card>
+        </Col>
+      </Row>
+      <br />
       <form>
         <Row>
           {

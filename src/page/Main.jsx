@@ -9,6 +9,8 @@ import BerandaC from './BerandaC'
 import ProdukLainnya from './ProdukLainnya'
 import LayananLainnya from './LayananLainnya'
 import ProdukDetail from './ProdukDetail'
+import LayananDetail from './LayananDetail'
+import DetailPetshop from './DetailPetshop'
 
 function MainC() {
   const history = useHistory()
@@ -51,11 +53,17 @@ function MainC() {
           <Route path="/products">
             <ProdukLainnya/>
           </Route>
-          <Route path="/layanan-lainnya">
-          <LayananLainnya/>
+          <Route path="/services">
+            <LayananLainnya/>
           </Route>
           <Route path="/detail-produk">
             <ProdukDetail/>
+          </Route>
+          <Route path="/detail-layanan">
+            <LayananDetail/>
+          </Route>
+          <Route path="/detail-petshop">
+            <DetailPetshop/>
           </Route>
         </Switch>
       </div>

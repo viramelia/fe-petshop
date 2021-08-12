@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import {Nav, Navbar, Form, FormControl, Button, NavDropdown, Image} from 'react-bootstrap'
-import {BrowserRouter as Router, Link, Switch, Route} from 'react-router-dom'
+import {BrowserRouter as Router, Link, Switch, Route, useHistory} from 'react-router-dom'
 
 import BerandaC from '../BerandaC'
 import ProfilP from './ProfilP'
@@ -13,12 +13,16 @@ import About from '../About'
 import DaftarPesanan from './DaftarPesanan'
 import AntrianL from './AntrianL'
 import MyChartLayanan from '../customer/MyChartLayanan'
-import Produkdetail from '../../components/Produkdetail'
-import Layanandetail from '../../components/Layanandetail'
+import ProdukDetail from '../ProdukDetail'
+import LayananDetail from '../LayananDetail'
 import Produk from './Produk'
 import Layanan from './Layanan'
+import ProdukLainnya from '../ProdukLainnya'
+import LayananLainnya from '../LayananLainnya'
+import DetailPetshop from '../DetailPetshop'
 
 function MainP() {
+  const history = useHistory()
   const [sidebar, setSidebar] = useState(false);
 
   const openSidebar = () =>{
@@ -27,6 +31,10 @@ function MainP() {
   const closeSidebar = () =>{
     setSidebar(false)
   }  
+
+  const handleLogout = () =>{
+    history.push('/')
+  }
 
   return (
     <Router>
@@ -84,12 +92,18 @@ function MainP() {
           <Image className="img-profil" src={require('../../assets/petshop.png').default} roundedCircle />
           <NavDropdown title="Viramelia" id="basic-nav-dropdown">
           <NavDropdown.Item href="/petshop/profil">Profil</NavDropdown.Item>
-          <NavDropdown.Item href="#action/3.2">Logout</NavDropdown.Item>
+          <NavDropdown.Item onClick={handleLogout}>Logout</NavDropdown.Item>
         </NavDropdown>
         </Navbar>
         <Switch>
           <Route exact path="/petshop">
             <BerandaC/>
+          </Route>
+          <Route path="/petshop/products">
+            <ProdukLainnya/>
+          </Route>
+          <Route path="/petshop/services">
+            <LayananLainnya/>
           </Route>
           <Route path="/petshop/offline-layanan">
             <TransaksioffL/>
@@ -116,10 +130,10 @@ function MainP() {
             <AntrianL/>
           </Route>
           <Route path="/petshop/detail-produk">
-            <Produkdetail/>
+            <ProdukDetail/>
           </Route>
           <Route path="/petshop/detail-layanan">
-            <Layanandetail/>
+            <LayananDetail/>
           </Route>
           <Route path="/petshop/upload-produk">
             <Produk/>
@@ -132,6 +146,9 @@ function MainP() {
           </Route>
           <Route path="/petshop/transaksi-layanan">
             <TransaksiL/>
+          </Route>
+          <Route path="/petshop/detail-petshop">
+            <DetailPetshop/>
           </Route>
         </Switch>
       </div>

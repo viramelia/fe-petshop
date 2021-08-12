@@ -2,12 +2,19 @@ import React from 'react'
 import {Jumbotron, Container, Form, Button,Row, Col} from 'react-bootstrap'
 
 import CardLayanan from '../components/CardLayanan'
+
 function LayananLainnya() {
   return (
-    <div align="center">
-       <Jumbotron style={{backgroundImage: `url('./BASKET2.jpg')`, backgroundSize: 'cover', height:'558px' , width: '100%', backgroundRepeat:'no-repeat'}} fluid>
+    <div>
+      {/* <Jumbotron style={{backgroundImage: `url('./BASKET2.jpg')`, backgroundColor: '#7345AB', backgroundSize: 'cover', height:'558px' , width: '100%', backgroundRepeat:'no-repeat'}} fluid>
         <Container>
-          
+          <h1>asf</h1>
+        </Container>
+      </Jumbotron> */}
+      <Jumbotron style={{backgroundColor: `#7435AB`, height: '275px',}} fluid>
+        <Container>
+          <h2 className="text-white">Temukan layanan dari berbagai petshop</h2>
+          <p className="text-white">Kesehatan | Kebersihan | Perawatan</p>
         </Container>
       </Jumbotron>
       <div align="center">
@@ -28,7 +35,7 @@ function LayananLainnya() {
           </Form>
         </div>
       </div>
-      <p style={{fontSize: '48px', color: '#46397e'}}>Layanan</p> 
+      <p style={{fontSize: '48px', color: '#46397e'}} align="center">Layanan</p> 
       <hr style={{border: '2px solid #001E6C', width: '50px'}}/>
       <Container>
         <Row className="justify-content-md-center">

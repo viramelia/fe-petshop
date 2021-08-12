@@ -7,8 +7,15 @@ function ProdukLainnya() {
 
   return (
     <div>
-      <Jumbotron style={{backgroundImage: `url('BASKET2.jpg')`, 
+      {/* <Jumbotron style={{backgroundImage: `url('BASKET2.jpg')`, 
         backgroundSize: 'cover', height: '550px', backgroundRepeat: 'no-repeat'}} fluid>
+          <h1>petshop</h1>
+      </Jumbotron> */}
+      <Jumbotron style={{backgroundColor: `#7435AB`, height: '275px',}} fluid>
+        <Container>
+          <h2 className="text-white">Temukan Produk dari berbagai petshop</h2>
+          <p className="text-white">Makanan | Minuman | Obat | Aksesoris</p>
+        </Container>
       </Jumbotron>
       <Container>
       <Row className="justify-content-center">

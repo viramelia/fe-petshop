@@ -7,12 +7,21 @@ function CardProduk() {
   const {url, match} = useRouteMatch()
 
   const toDetail = ()=>{
-    history.push(`/detail-produk`)
+    const role = localStorage.getItem('role')
+    if(role == 'customer'){
+      history.push('/customer/detail-produk')
+    }
+    else if(role == 'petshop'){
+      history.push('/petshop/detail-produk')
+    }
+    else{
+      history.push(`/detail-produk`)
+    }
   }
 
   return (
     <div>
-      <Card style={{ width: '200px', borderBlockColor:'#E5E5E5'}}>
+      <Card style={{ width: '214px', borderBlockColor:'#E5E5E5'}}>
         <Card.Img variant="top" style={{height: '200px', padding:'10px'}} src={require('../assets/meo.png').default} />
         <Card.Body>
           <div>

@@ -4,12 +4,22 @@ import {useHistory} from 'react-router-dom'
 
 function CardLayanan() {
   const history = useHistory()
-  const [layanan, setLayanan] = useState(false)
   const [jam, setJam] = useState(11)
   const [waktu, setWaktu] = useState([9, 10, 11, 12])
 
   const toDetail =() =>{
-    history.push('/customer/detail-layanan')
+    const role = localStorage.getItem('role')
+    
+    if(role == 'customer'){
+      history.push('/customer/detail-layanan')
+    }
+    else if(role == 'petshop'){
+      history.push('/petshop/detail-layanan')
+    }
+    else{
+      history.push('/detail-layanan')
+    }
+
   }
 
   return (
@@ -21,43 +31,6 @@ function CardLayanan() {
           <Button className="width-full" style={{backgroundColor: '#7435AB', border: 'none'}} onClick={toDetail}>Booking</Button>
         </Card.Body>
       </Card>
-      <Modal show={layanan} onHide={()=> setLayanan(false)}>
-        <Modal.Header closeButton>
-          <Modal.Title>
-          </Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <Row>
-            <Col md={4}>
-              <img className="img-produk" src="merek-whiskas.png" alt="gambar"/>
-            </Col>
-            <Col md={8}> 
-              <div className="d-flex">
-                <h3>Grooming</h3>
-                <p className="justify-content-start">Rp. 10.000</p>
-              </div>
-              <p>
-                Grooming ini bertujuan untuk menghindari kucing dri jamur 
-              </p>
-              <Form>
-              <h3>Pilih Jadwal</h3>
-                {
-                  waktu.map((data, index)=>(
-                    data != jam ?
-                    <InputGroup>
-                      <Form.Check inline label={`${data}.00 - ${data+=1}.00`} name="jam" type="radio"/>
-                    </InputGroup>: ''
-                  ))
-                }
-              </Form>
-            </Col>
-          </Row>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={()=>setLayanan(false)}>Close</Button>
-          <Button variant="info" onClick={()=>setLayanan(false)}>Checkout</Button>
-        </Modal.Footer>
-      </Modal>
     </div>
   )
 }

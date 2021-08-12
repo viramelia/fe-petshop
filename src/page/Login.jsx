@@ -10,13 +10,17 @@ function Login(){
 
   const handleAuth = e =>{
     e.preventDefault()
-    if(email === 'petshop')
+    if(email === 'petshop'){
+      localStorage.setItem('role', 'petshop')
       history.push('/petshop')
+    }
     else if(email === 'customer'){
+      localStorage.setItem('role', 'customer')
       history.push('/customer')
     }
     else if(email === 'admin'){
-      console.log('admin')
+      localStorage.setItem('role', 'admin')
+      history.push('/admin')
     }
     else{
       console.log('401')

@@ -1,9 +1,9 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import {Nav, Navbar, Form, FormControl, Button, NavDropdown, Image} from 'react-bootstrap'
 import { BrowserRouter as Router,
         Switch,
         Route,
-        Link} from 'react-router-dom'
+        Link, useHistory} from 'react-router-dom'
 // IMPORT HALAMAN
 import About from '../About'
 import BerandaC from '../BerandaC'
@@ -13,11 +13,29 @@ import TransaksiProduk from './TransaksiProduk'
 import TransaksiLayanan from './TransaksiLayanan'
 import Payment from './Payment'
 import MyChartLayanan from './MyChartLayanan'
-import Layanandetail from '../../components/Layanandetail'
+import Layanandetail from '../LayananDetail'
 import Produkdetail from '../ProdukDetail'
 import UpdateProfil from './UpdateProfil'
+import ProdukLainnya from '../ProdukLainnya'
+import LayananLainnya from '../LayananLainnya'
+import DetailPetshop from '../DetailPetshop'
 
 function MainC() {
+  const history = useHistory()
+
+  useEffect(()=>{
+    const role = localStorage.getItem('role')
+
+    if(role != 'customer'){
+      history.push('/')
+    }
+  }, [])
+
+  const handleLogout = () =>{
+    localStorage.removeItem('role')
+    history.push('/')
+  }
+
   return (
     <Router>
       <div id="main" className="main-page">
@@ -56,12 +74,27 @@ function MainC() {
           <Image className="img-profil" src={require('../../assets/profil.JPG').default} roundedCircle />
           <NavDropdown title="Viramelia" id="basic-nav-dropdown">
           <NavDropdown.Item href="/customer/profil-customer">Profil</NavDropdown.Item>
-          <NavDropdown.Item href="#action/3.2">Logout</NavDropdown.Item>
+          <NavDropdown.Item onClick={handleLogout}>Logout</NavDropdown.Item>
         </NavDropdown>
         </Navbar>
         <Switch>
           <Route exact path="/customer">
             <BerandaC/>
+          </Route>
+          <Route path ="/customer/products">
+            <ProdukLainnya/>
+          </Route>
+          <Route path ="/customer/services">
+            <LayananLainnya/>
+          </Route>
+          <Route path="/customer/detail-petshop">
+            <DetailPetshop/>
+          </Route>
+          <Route path="/customer/detail-produk">
+            <Produkdetail/>
+          </Route>
+          <Route path="/customer/detail-layanan">
+            <Layanandetail/>
           </Route>
           <Route path="/customer/my-chart">
             <MyChart/>
@@ -83,12 +116,6 @@ function MainC() {
           </Route>
           <Route path="/customer/about">
             <About/>
-          </Route>
-          <Route path="/customer/detail-produk">
-            <Produkdetail/>
-          </Route>
-          <Route path="/customer/detail-layanan">
-            <Layanandetail/>
           </Route>
           <Route path="/customer/update-profil">
             <UpdateProfil/>

@@ -30,6 +30,34 @@ function BerandaC() {
     },
   ])
 
+  const otherProducts = () =>{
+    const role = localStorage.getItem('role')
+
+    if(role == 'customer'){
+      history.push('/customer/products')
+    }
+    else if(role == 'petshop'){
+      history.push('/petshop/products')
+    }
+    else{
+      history.push('/products')
+    }
+  }
+
+  const otherServices = () =>{
+    const role = localStorage.getItem('role')
+
+    if(role == 'customer'){
+      history.push('/customer/services')
+    }
+    else if(role == 'petshop'){
+      history.push('/petshop/services')
+    }
+    else{
+      history.push('/services')
+    }
+  }
+
   return (
     <div align="center">
       <Jumbotron style={{backgroundImage: `url('BASKET2.jpg')`, backgroundSize: 'cover', height:'558px' , width: '100%', backgroundRepeat:'no-repeat'}} fluid>
@@ -60,7 +88,7 @@ function BerandaC() {
             ))
           }
         </Row>
-        <Button className="mt-3"  onClick={()=>history.push('/products')}
+        <Button className="mt-3"  onClick={otherProducts}
           style={{backgroundColor: '#7435AB', border: 'none'}}>Produk Lainnya</Button>
       </Container>
       </div>
@@ -78,7 +106,7 @@ function BerandaC() {
             ))
           }
         </Row>
-        <Button className="mt-3" onClick={()=>history.push('/layanan-lainnya')}
+        <Button className="mt-3" onClick={otherServices}
           style={{backgroundColor: '#7435AB', border: 'none'}}>Layanan Lainnya</Button>
       </Container>
       </div>
