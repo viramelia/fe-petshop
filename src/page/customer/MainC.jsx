@@ -3,7 +3,8 @@ import {Nav, Navbar, Form, FormControl, Button, NavDropdown, Image} from 'react-
 import { BrowserRouter as Router,
         Switch,
         Route,
-        Link, useHistory} from 'react-router-dom'
+        Link, useHistory, useLocation} from 'react-router-dom'
+import Axios from 'axios'
 // IMPORT HALAMAN
 import About from '../About'
 import BerandaC from '../BerandaC'
@@ -19,25 +20,57 @@ import UpdateProfil from './UpdateProfil'
 import ProdukLainnya from '../ProdukLainnya'
 import LayananLainnya from '../LayananLainnya'
 import DetailPetshop from '../DetailPetshop'
+import CariPetshop from '../CariPetshop'
+import MorePetshop from '../MorePetshop'
+import Konsultasi from './Konsultasi'
 
 function MainC() {
   const history = useHistory()
+  const [customer, setCustomer] = useState([]) 
+  const [foto, setFoto] = useState()
+  const location = useLocation()
+  const [petshop, setPetshop] = useState([])
+
+  const searchPetshop = e =>{
+    e.preventDefault()
+    if(location.pathname == '/customer/cari-petshop'){
+      window.location.reload();
+      history.push('/customer/cari-petshop', {keyword: petshop})
+    }
+    else{
+      history.push('/customer/cari-petshop', {keyword: petshop})
+    }
+  }
 
   useEffect(()=>{
     const role = localStorage.getItem('role')
+    const user = localStorage.getItem('user')
 
     if(role != 'customer'){
       history.push('/')
     }
+
+    const config = {
+      headers: {
+        'Authorization' : `Bearer ${localStorage.getItem('token')}`
+      }
+    }
+
+    Axios.get(`http://127.0.0.1:8000/api/user/${user}`, config)
+    .then(res=>{
+      setCustomer(res.data.data)
+    })
+    .catch(err=>{})
+
   }, [])
 
   const handleLogout = () =>{
-    localStorage.removeItem('role')
+    localStorage.clear()
     history.push('/')
   }
 
   return (
-    <Router>
+    <div>
       <div id="main" className="main-page">
         <Navbar className="bg-primary-c" variant="light">
           <Navbar.Brand>
@@ -58,28 +91,36 @@ function MainC() {
             {/* <Nav.Link as={Link} to="/customer/transaksi">
               Transaksi
             </Nav.Link> */}
-            <Nav.Link as={Link} to="/customer/about">
-              About
+            <Nav.Link as={Link} to="/customer/konsultasi">
+              Konsultasi
             </Nav.Link>
+            {/* <Nav.Link as={Link} to="/customer/about">
+              About
+            </Nav.Link> */}
           </Nav>
-          <Form className="d-flex mr-3">
+          <Form className="d-flex mr-3" onSubmit={searchPetshop}>
               <FormControl
                 type="search"
                 placeholder="Search"
                 className="mr-2"
                 aria-label="Search"
+                onChange={e=>setPetshop(e.target.value)}
               />
-              <Button variant="outline-success">Search</Button>
+              <Button type="submit" style={{backgroundColor:'#7435AB'}} variant="primary">Search</Button>
             </Form>
-          <Image className="img-profil" src={require('../../assets/profil.JPG').default} roundedCircle />
-          <NavDropdown title="Viramelia" id="basic-nav-dropdown">
-          <NavDropdown.Item href="/customer/profil-customer">Profil</NavDropdown.Item>
+          <Image className="img-profil" src={customer.foto} roundedCircle />
+        <NavDropdown title={customer.nama_lengkap} id="basic-nav-dropdown">
+          <NavDropdown.Item  href="/customer/profil-customer">Profil</NavDropdown.Item>
+          <NavDropdown.Item  href="/customer/about">About</NavDropdown.Item>
           <NavDropdown.Item onClick={handleLogout}>Logout</NavDropdown.Item>
         </NavDropdown>
         </Navbar>
         <Switch>
           <Route exact path="/customer">
             <BerandaC/>
+          </Route>
+          <Route path="/customer/cari-petshop">
+            <CariPetshop/>
           </Route>
           <Route path ="/customer/products">
             <ProdukLainnya/>
@@ -120,9 +161,15 @@ function MainC() {
           <Route path="/customer/update-profil">
             <UpdateProfil/>
           </Route>
+          <Route path="/customer/more-petshop">
+            <MorePetshop/>
+          </Route>
+          <Route path="/customer/konsultasi">
+            <Konsultasi/>
+          </Route>
         </Switch>
       </div>
-    </Router>
+    </div>
   )
 }
 

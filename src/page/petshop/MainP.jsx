@@ -1,6 +1,7 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import {Nav, Navbar, Form, FormControl, Button, NavDropdown, Image} from 'react-bootstrap'
-import {BrowserRouter as Router, Link, Switch, Route, useHistory} from 'react-router-dom'
+import {BrowserRouter as Router, Link, Switch, Route, useHistory, useLocation} from 'react-router-dom'
+import Axios from 'axios'
 
 import BerandaC from '../BerandaC'
 import ProfilP from './ProfilP'
@@ -20,10 +21,33 @@ import Layanan from './Layanan'
 import ProdukLainnya from '../ProdukLainnya'
 import LayananLainnya from '../LayananLainnya'
 import DetailPetshop from '../DetailPetshop'
+import Checkout from './Checkout'
+import CariPetshop from '../CariPetshop'
+import EditProduk from './EditProduk'
+import EditLayanan from './EditLayanan'
+import MorePetshop from '../MorePetshop'
+import JadwalKonsultasi from './JadwalKonsultasi'
 
 function MainP() {
+  const location = useLocation()
   const history = useHistory()
   const [sidebar, setSidebar] = useState(false);
+  const [petshop, setPetshop] = useState([])
+  const [foto, setFoto] = useState()
+  const [keyword, setKeyword] = useState()
+  const [petshopName, setPetshopName] = useState()
+
+  const searchPetshop = e =>{
+    e.preventDefault()
+    console.log(location.pathname)
+    if(location.pathname == '/petshop/cari-petshop'){
+      window.location.reload();
+      history.push('/petshop/cari-petshop', {keyword: petshopName})
+    }
+    else{
+      history.push('/petshop/cari-petshop', {keyword: petshopName})
+    }
+  }
 
   const openSidebar = () =>{
     setSidebar(true)
@@ -33,15 +57,39 @@ function MainP() {
   }  
 
   const handleLogout = () =>{
+    localStorage.clear()
     history.push('/')
   }
 
+  const config = {
+    headers: {
+      'Authorization' : `Bearer ${localStorage.getItem('token')}`
+    }
+  }
+
+  useEffect(()=>{
+    
+    const user = localStorage.getItem('user')
+
+    Axios.get(`http://127.0.0.1:8000/api/user/${user}`, config)
+    .then(res=>{
+      setPetshop(res.data.data)
+    })
+    .catch(err=>{})
+
+  }, [])
+
   return (
-    <Router>
+    <div>
       <div id="mySidenav" className={sidebar? "sidenav open-sidenav": "sidenav" }>
-        <h3 className="text-white text-center">Transaksi Offline</h3>
-        <Link to="/petshop/offline-produk">Produk</Link>
-        <Link to="/petshop/offline-layanan">Layanan</Link>
+        <h3 className="text-center" style={{color:'#512D6D', fontWeight: '600', marginTop:'50px', fontSize:20}}>Transaksi Offline</h3>
+        
+        <Link to="/petshop/offline-produk" style={{color:'#512D6D', marginLeft: '30px', textDecoration: 'none', fontWeight: '400', fontSize:16, marginTop:'25px'}}>
+        <img width="23" src={require('../../assets/pet-food.png').default} alt="produk" />
+          &nbsp;Produk</Link>
+        <Link to="/petshop/offline-layanan" style={{color:'#512D6D', marginLeft: '30px', textDecoration: 'none', fontWeight: '400',fontSize:16, marginTop:'10px'}}>
+        <img width="23" src={require('../../assets/checkup.png').default} alt="layanan" />
+        &nbsp;Layanan</Link>
       </div>
       <div id="main" className={sidebar ? "push-main-page":"main-page"}>
         <Navbar className="navbar" expand="lg"  >
@@ -76,28 +124,36 @@ function MainP() {
               <NavDropdown.Item href="/petshop/transaksi">Produk</NavDropdown.Item>
               <NavDropdown.Item href="/petshop/transaksi-layanan">Layanan</NavDropdown.Item>
             </NavDropdown>
-            <Nav.Link as={Link} to="/about">
-              About
+            <Nav.Link as={Link} to="/petshop/konsultasi">
+              Konsultasi
             </Nav.Link>
+            {/* <Nav.Link as={Link} to="/petshop/about">
+              About
+            </Nav.Link> */}
           </Nav>
-          <Form className="d-flex mr-3">
+          <Form className="d-flex mr-3" onSubmit={searchPetshop}>
               <FormControl
                 type="search"
                 placeholder="Search"
                 className="mr-2"
                 aria-label="Search"
+                onChange={e=>setPetshopName(e.target.value)}
               />
-              <Button style={{backgroundColor:'#7435AB'}} variant="primary" >Search</Button>
+              <Button style={{backgroundColor:'#7435AB'}} variant="primary" type="submit">Search</Button>
             </Form>
-          <Image className="img-profil" src={require('../../assets/petshop.png').default} roundedCircle />
-          <NavDropdown title="Viramelia" id="basic-nav-dropdown">
+          <Image className="img-profil" src={petshop.foto} roundedCircle />
+          <NavDropdown title={petshop.nama_lengkap} id="basic-nav-dropdown">
           <NavDropdown.Item href="/petshop/profil">Profil</NavDropdown.Item>
+          <NavDropdown.Item href="/petshop/about">About</NavDropdown.Item>
           <NavDropdown.Item onClick={handleLogout}>Logout</NavDropdown.Item>
         </NavDropdown>
         </Navbar>
         <Switch>
           <Route exact path="/petshop">
             <BerandaC/>
+          </Route>
+          <Route path="/petshop/cari-petshop">
+            <CariPetshop/>
           </Route>
           <Route path="/petshop/products">
             <ProdukLainnya/>
@@ -108,17 +164,29 @@ function MainP() {
           <Route path="/petshop/offline-layanan">
             <TransaksioffL/>
           </Route>
-          <Route path="/petshop/offline-produk">
+          <Route exact path="/petshop/offline-produk">
             <TransaksioffP/>
           </Route>
-          <Route path="/petshop/profil">
+          <Route path="/petshop/offline-produk/checkout">
+            <Checkout/>
+          </Route>
+          <Route exact path="/petshop/profil">
             <ProfilP/>
+          </Route>
+          <Route path="/petshop/profil/edit-produk">
+            <EditProduk/>
+          </Route>
+          <Route path="/petshop/profil/edit-layanan">
+            <EditLayanan/>
           </Route>
           <Route path="/petshop/transaksi">
             <TransaksiP/>
           </Route>
-          <Route path="/about">
+          <Route path="/petshop/about">
             <About/>
+          </Route>
+          <Route path="/petshop/konsultasi">
+            <JadwalKonsultasi/>
           </Route>
           <Route path="/petshop/daftarpesanan">
             <DaftarPesanan/>
@@ -150,9 +218,12 @@ function MainP() {
           <Route path="/petshop/detail-petshop">
             <DetailPetshop/>
           </Route>
+          <Route path="/petshop/more-petshop">
+            <MorePetshop/>
+          </Route>
         </Switch>
       </div>
-    </Router>
+    </div>
   )
 }
 

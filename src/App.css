@@ -1,3 +1,14 @@
+.my-btn-primary{
+  background-color: #7435AB !important;
+  border: none !important;
+}
+
+.my-btn-white{
+  background-color: white !important;
+  border-color: #7435AB !important;
+  color: #7435AB !important;
+}
+
 /* SIDEBAR */
 .bg-main-color{
   background-color: #FF965B;
@@ -9,7 +20,7 @@
 }
 
 .push-main-page{
-  margin-left: 250px;
+  margin-left: 200px;
 }
 
 /* sidebar icon */
@@ -46,14 +57,14 @@
   z-index: 1; /* Stay on top */
   top: 0; /* Stay at the top */
   left: 0;
-  background-color: #7435AB; /* Black*/
+  background-color: #f5e8fd; /* Black*/
   overflow-x: hidden; /* Disable horizontal scroll */
   padding-top: 60px; /* Place content 60px from the top */
   transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
 }
 
 .open-sidenav{
-  width: 250px;
+  width: 200px;
 }
 
 /* The navigation menu links */
@@ -197,13 +208,13 @@
 
 .navbar{
  
-    background-color:rgba(204, 164, 254, 0.23);
+    background-color:rgba(240, 208, 255, 0.23);
     height: 85px;
     margin: auto;
 }
 
 .bg-primary-c{
-  backgroundColor:#F3EAFF;
+  background-color:#F3EAFF;
 }
 
 .color-primary{
@@ -221,3 +232,7 @@
   cursor: pointer;
 }
 /* gcgg */
+
+.hapus-pesanan:hover{
+  cursor: pointer;
+}

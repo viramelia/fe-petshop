@@ -5,11 +5,18 @@ import {Switch, Route, Link, useHistory} from 'react-router-dom'
 import Home from './Home'
 import KonfirmasiPetshop from './KonfirmasiPetshop'
 import TransaksiProduk from './TransaksiProduk'
+import Customer from './Customer'
+import Petshop from './Petshop'
 import Produk from './Produk'
 import Layanan from './Layanan'
 
 function MainAdmin() {
   const history = useHistory()
+
+  const handleLogout = () =>{
+    localStorage.clear()
+    history.replace('/')
+  }
 
   return (
     <div>
@@ -25,14 +32,18 @@ function MainAdmin() {
               <NavDropdown.Item as={Link} to="/admin/konfirmasi-petshop">Petshop</NavDropdown.Item>
               <NavDropdown.Item as={Link} to="/admin/konfirmasi-transaksi">Transaksi produk</NavDropdown.Item>
             </NavDropdown>
-            <NavDropdown title="Riwayat transaksi" id="basic-nav-dropdown">
+            <NavDropdown title="Users" id="basic-nav-dropdown">
+              <NavDropdown.Item as={Link} to="/admin/petshop">Petshop</NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="/admin/customer">Customer</NavDropdown.Item>
+            </NavDropdown>
+            {/* <NavDropdown title="Riwayat transaksi" id="basic-nav-dropdown">
               <NavDropdown.Item as={Link} to="/admin/riwayat-transaksi-produk">Produk</NavDropdown.Item>
               <NavDropdown.Item as={Link} to="/admin/riwayat-transaksi-layanan">Layanan</NavDropdown.Item>
-            </NavDropdown>
+            </NavDropdown> */}
           </Nav>
           
           <Button style={{backgroundColor:'white' , borderColor:'#7435AB', color:'#7435AB'}} 
-          onClick={()=>history.replace('/')}>Logout</Button>
+          onClick={handleLogout}>Logout</Button>
       </Navbar>
       <Switch>
         <Route exact path="/admin">
@@ -43,6 +54,12 @@ function MainAdmin() {
         </Route>
         <Route path="/admin/konfirmasi-transaksi">
           <TransaksiProduk/>
+        </Route>
+        <Route path="/admin/customer">
+          <Customer/>
+        </Route>
+        <Route path="/admin/petshop">
+          <Petshop/>
         </Route>
         <Route path="/admin/riwayat-transaksi-produk">
           <Produk/>
