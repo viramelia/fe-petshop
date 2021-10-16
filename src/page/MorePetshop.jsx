@@ -133,7 +133,7 @@ function MorePetshop() {
         setMyMarker(res.data.data)
       })
       .catch(err=>console.log(err))
-    if(localStorage.getItem('user') != 'petshop'){
+    if(localStorage.getItem('role') != 'petshop'){
       if('geolocation' in navigator){
         navigator.geolocation.getCurrentPosition(function(position) {
           let coord = []
